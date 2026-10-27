@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>To‘lov nazorati</h1>
+    <nav>
+      <a href="/" class="active">Qarzdorlar</a>
+      <a href="/students-page">O‘quvchilar</a>
+      <a href="/docs" target="_blank">API</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="controls">
+        <label for="month">Oy</label>
+        <input type="month" id="month" />
+        <button id="refresh" class="btn">Yangilash</button>
+      </div>
+
+      <div class="summary">
+        <div class="stat"><span class="stat-label">Jami o‘quvchilar</span><span class="stat-value" id="stat-total">—</span></div>
+        <div class="stat"><span class="stat-label">Qarzdorlar</span><span class="stat-value" id="stat-debtors">—</span></div>
+        <div class="stat"><span class="stat-label">Jami qarzdorlik</span><span class="stat-value" id="stat-debt">—</span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Qarzdorlar</h2>
+      <div id="debtors-state" class="muted">Yuklanmoqda…</div>
+      <table class="debtors-table" id="debtors-table" hidden>
+        <thead>
+          <tr>
+            <th>O‘quvchi</th>
+            <th>Guruh</th>
+            <th>Oylik</th>
+            <th>To‘langan</th>
+            <th>Qarz</th>
+          </tr>
+        </thead>
+        <tbody id="debtors-body"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Yangi to‘lov</h2>
+      <form id="payment-form" class="form">
+        <label>O‘quvchi
+          <select id="pay-student" required></select>
+        </label>
+        <label>Summa (so‘m)
+          <input type="number" id="pay-amount" min="0.01" step="0.01" required />
+        </label>
+        <label>Sana
+          <input type="date" id="pay-date" required />
+        </label>
+        <button type="submit" class="btn primary">Saqlash</button>
+        <p id="pay-feedback" class="feedback" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

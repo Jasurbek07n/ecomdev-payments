@@ -1,0 +1,176 @@
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #1b1f24;
+  --muted: #6a737d;
+  --border: #e4e7eb;
+  --primary: #2457d6;
+  --primary-dark: #1c45ad;
+  --danger: #c0392b;
+  --success: #1e8e4a;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.topbar {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+.topbar h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  flex: 1 1 auto;
+}
+.topbar nav { display: flex; gap: 14px; flex-wrap: wrap; }
+.topbar nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 4px 2px;
+  border-bottom: 2px solid transparent;
+}
+.topbar nav a.active { color: var(--text); border-bottom-color: var(--primary); }
+
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.card h2 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.controls label { color: var(--muted); font-size: 14px; }
+.controls input[type="month"] {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+.stat {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stat-label { color: var(--muted); font-size: 12px; }
+.stat-value { font-size: 18px; font-weight: 600; }
+
+@media (max-width: 560px) {
+  .summary { grid-template-columns: 1fr; }
+}
+
+.debtors-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.debtors-table th, .debtors-table td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.debtors-table th { color: var(--muted); font-weight: 500; }
+.debtors-table .debt { color: var(--danger); font-weight: 600; }
+
+@media (max-width: 640px) {
+  .debtors-table, .debtors-table thead, .debtors-table tbody,
+  .debtors-table tr, .debtors-table th, .debtors-table td { display: block; }
+  .debtors-table thead { display: none; }
+  .debtors-table tr {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+  }
+  .debtors-table td {
+    border: none;
+    padding: 4px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .debtors-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 12px;
+    margin-right: 10px;
+  }
+}
+
+.form { display: flex; flex-direction: column; gap: 10px; }
+.form label { display: flex; flex-direction: column; gap: 4px; font-size: 14px; color: var(--muted); }
+.form input, .form select {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text);
+  background: #fff;
+}
+
+.btn {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.btn:hover { background: #f1f3f6; }
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.btn.primary:hover { background: var(--primary-dark); }
+.btn.danger { color: var(--danger); border-color: #f0c3bc; }
+
+.muted { color: var(--muted); font-size: 14px; }
+.feedback { margin: 0; font-size: 14px; min-height: 1.2em; }
+.feedback.success { color: var(--success); }
+.feedback.error { color: var(--danger); }

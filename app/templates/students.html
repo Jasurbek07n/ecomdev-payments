@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O‘quvchilar — {{ title }}</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>To‘lov nazorati</h1>
+    <nav>
+      <a href="/">Qarzdorlar</a>
+      <a href="/students-page" class="active">O‘quvchilar</a>
+      <a href="/docs" target="_blank">API</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Yangi o‘quvchi</h2>
+      <form id="student-form" class="form">
+        <label>Ism<input id="s-name" required /></label>
+        <label>Telefon<input id="s-phone" required /></label>
+        <label>Guruh<input id="s-group" required /></label>
+        <label>Oylik to‘lov (so‘m)
+          <input type="number" id="s-fee" min="0.01" step="0.01" required />
+        </label>
+        <button type="submit" class="btn primary">Qo‘shish</button>
+        <p id="s-feedback" class="feedback" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>O‘quvchilar ro‘yxati</h2>
+      <div id="students-state" class="muted">Yuklanmoqda…</div>
+      <table class="debtors-table" id="students-table" hidden>
+        <thead>
+          <tr>
+            <th>Ism</th><th>Telefon</th><th>Guruh</th><th>Oylik</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="students-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/static/js/students.js"></script>
+</body>
+</html>
