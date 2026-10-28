@@ -47,6 +47,7 @@ async function loadDebtors() {
   state.textContent = "Yuklanmoqda…";
   state.className = "muted";
   table.hidden = true;
+  $("export").href = `/api/debtors.csv?month=${month}`;
 
   try {
     const [debtors, students] = await Promise.all([

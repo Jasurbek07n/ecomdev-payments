@@ -84,6 +84,17 @@ def test_invalid_month_formats(client):
         assert r.status_code == 422, bad
 
 
+def test_csv_export(client):
+    s = make_student(client)
+    make_payment(client, s["id"], "300000.00", "2026-10-05")
+    r = client.get("/api/debtors.csv?month=2026-10")
+    assert r.status_code == 200
+    assert r.headers["content-type"].startswith("text/csv")
+    text = r.text.strip().splitlines()
+    assert text[0] == "student_id,name,phone,group,monthly_fee,paid,debt"
+    assert "700000.00" in text[1]  # debt line
+
+
 def test_spec_literal_alias_matches(client):
     s = make_student(client)
     make_payment(client, s["id"], "300000.00", "2026-10-05")

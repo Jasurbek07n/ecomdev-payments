@@ -56,6 +56,15 @@ alembic upgrade head
 This creates `app.db` (SQLite) in the project root with the `students` and
 `payments` tables.
 
+## Seed demo data (optional)
+
+```bash
+python -m scripts.seed
+```
+
+Loads 5 students and a few October 2026 payments covering every debtor state
+(unpaid, partial, fully paid, overpaid, cross-month).
+
 ## Run
 
 ```bash
@@ -90,6 +99,7 @@ pytest
 | GET    | `/api/students/{id}/payments`          | Payments for one student             |
 | GET    | `/api/debtors?month=YYYY-MM`           | Debtors for the given month          |
 | GET    | `/debtors?month=YYYY-MM`               | Spec-literal alias (same service)    |
+| GET    | `/api/debtors.csv?month=YYYY-MM`       | Same list, downloadable as CSV       |
 
 ## Business logic — how monthly debt is calculated
 
@@ -155,6 +165,6 @@ The half-open interval avoids every month-length and year-boundary bug
 4. **Audit log.** Who created, edited, or deleted which record and when.
    Append-only `audit_log` table written from a SQLAlchemy event listener.
    Critical as soon as more than one person uses the system.
-5. **CSV / Excel export of the debtors list.** Accountants live in
-   spreadsheets. A `GET /api/debtors.csv?month=...` endpoint and a download
-   button in the UI would be a day of work and a daily time-saver.
+5. **Excel export + scheduled email of the debtors list.** CSV download is
+   already in the UI (`/api/debtors.csv?month=...`); the next step is proper
+   `.xlsx` formatting plus a weekly email to the center's director.
